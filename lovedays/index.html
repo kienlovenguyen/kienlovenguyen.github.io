@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+    <title>Together</title>
+</head>
+<body>
+<div id="wrapper">
+    <h1>LOVE DAYS</h1>
+
+    <div id="clock-box">
+        <div id="clock">
+            <date>0 DAYS</date>
+            <time>00:00:00</time>
+        </div>
+    </div>
+
+    <div id="info">
+        <div class="one">
+            <img src="img/trungkien.png" class="avt">
+            <p>Kiên heo 😘</p>
+        </div>
+        <!--                  <div id="heart">-->
+        <!--                        ❤<anni>...</anni>-->
+        <!--                  </div>-->
+
+        <div id="heart">
+            <img src="img/nhan-vao-day.gif" id="click-me" onclick="playMusic()">
+            <anni>...</anni>
+        </div>
+        <div class="two">
+            <img src="img/nguyennguyen1.jpg" class="avt">
+            <p>Si rồm ❤️</p>
+        </div>
+    </div>
+    <audio id="player" preload="auto" autoplay loop>
+        <source src="../music/yeu-em-rat-nhieu.mp3" type="audio/mp3">
+    </audio>
+    <footer>Thank you for your love 💕</footer>
+</div>
+
+<script type="text/javascript" src="../renxi/jquery.min.js"></script>
+<script>
+    function playMusic() {
+        document.getElementById('click-me').setAttribute("src", "img/trai-tim.gif");
+        document.getElementById('click-me').setAttribute("width", "50%");
+        document.getElementById('click-me').setAttribute("height", "50%");
+        document.getElementById('player').play();
+    }
+</script>
+<script>
+    (function () {
+        var yourDate = new Date("2019-10-24T00:00:00")
+        var rootTime = document.querySelector("time");
+
+        document.querySelector("anni").textContent = `${(yourDate.getDate() > 9) ? yourDate.getDate() : "0" + yourDate.getDate()}-${(yourDate.getMonth() > 8) ? (yourDate.getMonth() + 1) : "0" + (yourDate.getMonth() + 1)}-${yourDate.getFullYear()}`;
+
+        document.querySelector("date").textContent = Math.floor(Math.floor((new Date() - yourDate) / 1000) / 60 / 60 / 24) + " DAYS";
+
+        function olock() {
+            var today = new Date(),
+                hrs = (Math.floor(Math.floor((today - yourDate) / 1000) / 60 / 60)) % 24,
+                min = (Math.floor(Math.floor((today - yourDate) / 1000) / 60)) % 60,
+                sec = Math.floor((today - yourDate) / 1000) % 60;
+            rootTime.textContent = `${(hrs > 9) ? hrs : "0" + hrs}:${(min > 9) ? min : "0" + min}:${(sec > 9) ? sec : "0" + sec}`;
+        }
+
+        olock();
+        setInterval(function () {
+            olock()
+        }, 1000);
+    })();
+</script>
+<!--     <script src="app.js"></script>-->
+</body>
+</html>
